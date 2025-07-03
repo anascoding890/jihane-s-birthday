@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pablo the T-Rex Surprise</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', sans-serif;
+      background-color: #e0f7fa;
+      transition: background 1s ease;
+    }
+    #scene1, #scene2, #scene3 {
+      height: 100vh;
+      display: none;
+      padding: 50px 20px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    #scene1 {
+      display: block;
+      position: relative;
+      background-color: white;
+    }
+    #scene2, #scene3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 30px;
+      color: #333;
+      margin: 0 0 15px;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .trex-img, .window-img, .meme-img {
+      border-radius: 15px;
+      user-select: none;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .trex-img {
+      width: 400px;
+      transition: width 0.3s ease;
+    }
+    .window-img {
+      width: 300px;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-radius: 15px;
+    }
+    .meme-img {
+      width: 350px;
+      margin-top: 30px;
+    }
+    .hit-effect {
+      animation: flash-red 0.3s ease 2;
+    }
+    @keyframes flash-red {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(2) saturate(3) drop-shadow(0 0 10px red); }
+    }
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+    #scene2 {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #scene2 img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scene 1: Pablo the T-Rex -->
+  <div id="scene1">
+    <h1>Pablo ate your cake! push him! 👊🍰🔥</h1>
+    <p>Click on Pablo to push him!</p>
+    <img
+      src="https://clipart-library.com/image_gallery/3163.png"
+      alt="T-Rex"
+      class="trex-img"
+      id="trex"
+    />
+  </div>
+
+  <!-- Scene 2: Window -->
+  <div id="scene2">
+    <h1>PATITAAA Pablooooo is comingggg, HEEEEERE COOOOMM HereEEEEE 🏃‍♀️🏃‍♂️💨</h1>
+    <img
+      src="https://i.postimg.cc/x8wmnJLH/Jungle-background-Vector-flache-Farbkarikaturillustration-Heller-Dschungel-am-Morgen-Premium-Vekto.jpg"
+      alt="Jungle Window"
+      class="window-img"
+      id="openWindow"
+    />
+  </div>
+
+  <!-- Scene 3: Birthday Meme -->
+  <!-- Scene 3: Birthday Meme -->
+<div id="scene3" style="position: relative;">
+ <img
+  src="https://i.postimg.cc/4nR7HYBg/pablo-wearing.png"
+  alt="Party Hat"
+  style="
+    position: absolute;
+    top: 120px;    /* نزلها أكثر */
+    left: 250px;   /* حركها يمين */
+    width: 240px;  /* 3 أضعاف */
+    pointer-events: none;
+    user-select: none;
+  
+  "
+/>
+
+  <h1>😎🫵🏻💐صديق انا يحبك انت كل عام و انت بخير</h1>
+  <img
+    src="https://i.postimg.cc/tCNtdDbV/happy-birthday-pou-roblox.jpg"
+    alt="Meme Dog"
+    class="meme-img"
+  />
+</div>
+
+
+
+  <script>
+    const trex = document.getElementById("trex");
+    const scene1 = document.getElementById("scene1");
+    const scene2 = document.getElementById("scene2");
+    const scene3 = document.getElementById("scene3");
+    const openWindow = document.getElementById("openWindow");
+    const scene1Title = scene1.querySelector('h1');
+    const scene1Text = scene1.querySelector('p');
+
+    let hitCount = 0;
+
+    trex.onclick = () => {
+      hitCount++;
+      if (hitCount === 1) {
+        trex.src = "https://i.postimg.cc/TY4y8Hrb/Untitled.png";
+        trex.style.width = "450px";
+        scene1Title.textContent = "Pablo is angry! Hit him and run! 😠🏃‍♂️";
+      }
+
+      trex.classList.add('hit-effect');
+      setTimeout(() => {
+        trex.classList.remove('hit-effect');
+      }, 600);
+
+      if (hitCount >= 2) {
+        setTimeout(() => {
+          scene1.classList.add("fade-out");
+          setTimeout(() => {
+            scene1.style.display = "none";
+            scene2.style.display = "flex";
+            document.body.style.background = "#4CAF50";
+          }, 500);
+        }, 1000);
+      }
+    };
+
+    openWindow.onclick = () => {
+      scene2.classList.add("fade-out");
+      setTimeout(() => {
+        scene2.style.display = "none";
+        scene3.style.display = "flex";
+        document.body.style.background = "#fff9c4";
+      }, 600);
+    };
+  </script>
+
+</body>
+</html>
